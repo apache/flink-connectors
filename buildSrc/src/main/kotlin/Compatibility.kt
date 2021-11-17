@@ -9,6 +9,7 @@ enum class FlinkVersion {
  */
 fun Project.minimumFlinkVersion(version: FlinkVersion): Unit {
     // TODO:
+    this.setProperty("min_version", version.name)
 }
 
 fun Project.maximumFlinkVersion(version: FlinkVersion): Unit {

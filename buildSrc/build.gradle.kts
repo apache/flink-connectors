@@ -1,5 +1,10 @@
 plugins {
     `java-library`
+    `kotlin-dsl`
+}
+
+repositories {
+    mavenCentral()
 }
 
 version = "1.0.0-SNAPSHOT"

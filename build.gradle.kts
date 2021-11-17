@@ -5,6 +5,23 @@ plugins {
     checkstyle
 }
 
+group = "org.apache.flink.connectors"
+version = "1.0.0-SNAPSHOT"
+
+allprojects {
+    apply(plugin = "java-library")
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
 val isCiServer = System.getenv().containsKey("CI")
 //if (!gradle.startParameter.isOffline && isCiServer) {
     configure<com.gradle.scan.plugin.BuildScanExtension> {
@@ -12,13 +29,6 @@ val isCiServer = System.getenv().containsKey("CI")
         termsOfServiceAgree = "yes"
     }
 //}
-
-group = "org.apache.flink.connectors"
-version = "1.0.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     java {
@@ -30,14 +40,6 @@ configure<CheckstyleExtension> {
 }
 
 subprojects {
-    apply(plugin = "java-library")
-
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(8))
-        }
-    }
-
     dependencies {
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
